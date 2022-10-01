@@ -1,8 +1,9 @@
 extends Node2D
 
 var stages = [
-	"res://Stages/Stage000.tscn",
+	"res://Stages/Stage002.tscn",
 	"res://Stages/Stage001.tscn",
+	"res://Stages/Stage002.tscn",
 	]
 
 var reload_count = 0

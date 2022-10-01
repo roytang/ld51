@@ -9,6 +9,8 @@ export var speed = Vector2(250.0, 300.0)
 onready var gravity = 500
 onready var sprite = $Sprite
 onready var shape = $CollisionShape2D
+onready var leftwallcheck = $LeftWallRaycasts
+onready var rightwallcheck = $RightWallRaycasts
 
 const FLOOR_NORMAL = Vector2.UP
 const FLOOR_DETECT_DISTANCE = 10.0
@@ -85,9 +87,27 @@ func get_direction():
 		hdir = hdir - 1.0
 	return Vector2(
 		hdir,
-		-1 if is_on_floor() and Input.is_action_just_pressed("jump") else ybase
+		-1 if _can_jump(hdir) and Input.is_action_just_pressed("jump") else ybase
 	)
 
+func _can_jump(hdir):
+	if is_on_floor():
+		return true
+	var close = _is_close_to_wall(rightwallcheck)
+	# print("close ", close, hdir)
+	if _is_close_to_wall(rightwallcheck) and hdir > 0:
+		return true
+	if _is_close_to_wall(leftwallcheck) and hdir < 0:
+		return true
+		
+
+func _is_close_to_wall(raycasts):
+	# all the raycasts in the set must return true
+	for r in raycasts.get_children():
+		if not r.is_colliding():
+			return false
+	return true
+	
 # This function calculates a new velocity whenever you need it.
 # It allows you to interrupt jumps.
 func calculate_move_velocity(

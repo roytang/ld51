@@ -103,6 +103,30 @@ shape = SubResource( 7 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/death = SubResource( 8 )
 
+[node name="LeftWallRaycasts" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="LeftWallRaycasts"]
+position = Vector2( -18, -2 )
+enabled = true
+cast_to = Vector2( -10, 0 )
+
+[node name="RayCast2D2" type="RayCast2D" parent="LeftWallRaycasts"]
+position = Vector2( -18, 20 )
+enabled = true
+cast_to = Vector2( -10, 0 )
+
+[node name="RightWallRaycasts" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="RightWallRaycasts"]
+position = Vector2( 18, -2 )
+enabled = true
+cast_to = Vector2( 10, 0 )
+
+[node name="RayCast2D2" type="RayCast2D" parent="RightWallRaycasts"]
+position = Vector2( 18, 20 )
+enabled = true
+cast_to = Vector2( 10, 0 )
+
 [connection signal="hit" from="." to="." method="_on_Player_hit"]
 [connection signal="set_camera_limit" from="." to="." method="_on_Player_set_camera_limit"]
 [connection signal="body_entered" from="StompDetector" to="." method="_on_StompDetector_body_entered"]
