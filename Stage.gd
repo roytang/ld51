@@ -4,9 +4,13 @@ signal time_update
 signal stage_success
 signal stage_failed
 
+export var failable = true
+
 var time_start:float = 0.0
 var time_now:float = 0.0
 var _player
+var success = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,12 +40,15 @@ func _process(delta):
 
 func _on_Timer_timeout():
 	print("TIMEOUT")
-	set_process(false)
-	emit_signal("stage_failed", "You took too long!")
+	if failable:
+		emit_signal("time_update", "00", "000")
+		set_process(false)
+		emit_signal("stage_failed", "You took too long!")
 
 
 func _on_Customer_delivered():
 	set_process(false)
+	$Timer.stop()
 	emit_signal("stage_success")
 
 
@@ -53,4 +60,5 @@ func _on_StageBounds_body_exited(body):
 	print(body)
 	if body.is_in_group("player"):
 		set_process(false)
+		_player.dead = true
 		emit_signal("stage_failed", "You fell in a hole!")

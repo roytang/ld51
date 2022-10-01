@@ -37,6 +37,7 @@ extents = Vector2( 512.5, 288.5 )
 
 [node name="Stage000" type="Node2D"]
 script = ExtResource( 4 )
+failable = false
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0

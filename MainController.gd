@@ -1,10 +1,12 @@
 extends Node2D
 
 var stages = [
-	"res://Stages/Stage001.tscn",
+	# "res://Stages/Stage004.tscn",
 	"res://Stages/Stage000.tscn",
 	"res://Stages/Stage001.tscn",
 	"res://Stages/Stage002.tscn",
+	"res://Stages/Stage003.tscn",
+	"res://Stages/Stage004.tscn",
 	]
 
 var reload_count = 0
@@ -59,6 +61,8 @@ func _attach_events():
 	
 func _input(event):
 	if event.is_action_pressed("next") and is_instance_valid(current_stage_ref):
+		if not $HUD/SuccessMessageBox.visible and current_stage_ref.failable:
+			return
 		reload_count += 1
 		next_stage()
 		$HUD/FailureMessageBox.visible = false

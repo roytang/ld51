@@ -74,6 +74,8 @@ func get_direction():
 	
 	if success:
 		return Vector2(0, 0) 
+	if dead:
+		return Vector2(0, 1) # fall to the ground if you can
 		
 	var ybase = 0
 	if _stomp_boost:
@@ -167,7 +169,7 @@ func _on_Customer_delivered():
 
 
 func _on_Player_set_camera_limit(margin, position):
-	print("Setting camera limit", margin, position)
+	# print("Setting camera limit", margin, position)
 	if margin == 0: # MARGIN_LEFT
 		$Camera2D.limit_left = position
 	if margin == 1: # MARGIN_TOP

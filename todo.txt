@@ -2,8 +2,8 @@ HUD - timer [ok]
 end stage on delivery [ok]
 camera and stage bounds [ok]
 background tiles
-falling to death
-death/reload loop
+falling to death [ok]
+death/reload loop [ok]
 stage transition / selection map? [ok]
 walking enemies [ok]
 flying enemies
