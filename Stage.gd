@@ -26,6 +26,7 @@ func _process(delta):
 	# print(mystr)
 	if unix_time > 0.0:
 		emit_signal("time_update", "%02d" % [dt.second], "%03d" % [ms])
+		emit_signal("time_update", "%02d" % [dt.second], "%03d" % [ms])
 	else:
 		emit_signal("time_update", "00", "000")
 
