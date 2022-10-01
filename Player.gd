@@ -17,6 +17,7 @@ var _velocity = Vector2.ZERO
 var _stomp_boost = false
 var coins = 0
 var dead = false
+var success = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -66,6 +67,9 @@ func _physics_process(delta):
 
 func get_direction():
 	
+	if success:
+		return Vector2(0, 0) 
+		
 	var ybase = 0
 	if _stomp_boost:
 		_stomp_boost = false
@@ -132,7 +136,13 @@ func _on_Player_collect_coin():
 	emit_signal("update_hud", self)
 
 
-func _on_set_camera_limit(margin, position):
+
+func _on_Customer_delivered():
+	$Sprite/PizzaAnimatedSprite2.animation = "delivered"
+
+
+func _on_Player_set_camera_limit(margin, position):
+	print("Setting camera limit", margin, position)
 	if margin == 0: # MARGIN_LEFT
 		$Camera2D.limit_left = position
 	if margin == 1: # MARGIN_TOP
@@ -141,9 +151,7 @@ func _on_set_camera_limit(margin, position):
 		$Camera2D.limit_right = position
 	if margin == 3: # MARGIN_BOTTOM
 		$Camera2D.limit_bottom = position
-		
-	pass # Replace with function body.
 
 
-func _on_Customer_delivered():
-	$Sprite/PizzaAnimatedSprite2.animation = "delivered"
+func _on_Stage_stage_success():
+	success = true

@@ -1,6 +1,8 @@
 extends Node2D
 
 signal time_update
+signal stage_success
+
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -31,3 +33,8 @@ func _process(delta):
 
 func _on_Timer_timeout():
 	print("TIMEOUT")
+
+
+func _on_Customer_delivered():
+	set_process(false)
+	emit_signal("stage_success")

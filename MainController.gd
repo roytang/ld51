@@ -1,6 +1,5 @@
 extends Node2D
 
-signal delivered
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -17,8 +16,6 @@ func _ready():
 #	pass
 
 
-func _on_Area2D_body_entered(body):
-	if body.is_in_group("player"):
-		$AnimatedSprite.animation = "delivered"
-		emit_signal("delivered")
-		
+func _on_Stage_stage_success():
+	print("stage success!")
+	$HUD/SuccessMessageBox.visible = true
