@@ -143,3 +143,7 @@ func _on_set_camera_limit(margin, position):
 		$Camera2D.limit_bottom = position
 		
 	pass # Replace with function body.
+
+
+func _on_Customer_delivered():
+	$Sprite/PizzaAnimatedSprite2.animation = "delivered"
