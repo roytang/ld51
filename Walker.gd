@@ -71,23 +71,27 @@ func calculate_move_velocity(
 func _on_Hitbox_body_entered(body):
 	if dead:
 		return
+	print("BODY ENTERED!")
 	if body.is_in_group("player"):
+		print("HIT!")
 		body.emit_signal("hit")
 
 
-
-func _on_Goomba_stomp():
-	print("I got stomped!")
-	if dead:
-		return
-	dead = true
-	set_physics_process(false)
-	$CollisionShape2D.disabled = true
-	self.set_collision_layer_bit(0, false)
-	$AnimationPlayer.play("death")
 
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "death":
 		queue_free()
+
+
+func _on_Walker_stomp():
+	print("I got stomped!")
+	if dead:
+		return
+	dead = true
+	set_physics_process(false)
+	$CollisionShape2D.disabled = true
+	$AnimatedSprite.stop()
+	self.set_collision_layer_bit(0, false)
+	$AnimationPlayer.play("death")

@@ -41,23 +41,26 @@ func _physics_process(delta):
 		snap_vector = Vector2.DOWN * FLOOR_DETECT_DISTANCE
 	var is_on_platform = false
 
-	_velocity = move_and_slide_with_snap(
-		_velocity, snap_vector, FLOOR_NORMAL, not is_on_platform, 4, 0.9, false
-	)
-	
-	# When the character’s direction changes, we want to to scale the Sprite accordingly to flip it.
-	if direction.x != 0:
-		if direction.x > 0:
-			sprite.scale.x = 1
-			shape.scale.x = 1
-		else:
-			sprite.scale.x = -1
-			shape.scale.x = -1
+	if not dead:
+		_velocity = move_and_slide_with_snap(
+			_velocity, snap_vector, FLOOR_NORMAL, not is_on_platform, 4, 0.9, false
+		)
+		
+		# When the character’s direction changes, we want to to scale the Sprite accordingly to flip it.
+		if direction.x != 0:
+			if direction.x > 0:
+				sprite.scale.x = 1
+				shape.scale.x = 1
+			else:
+				sprite.scale.x = -1
+				shape.scale.x = -1
 			
-	if _velocity.y != 0:
+	if dead:
+		$Sprite/AnimatedSprite.animation = "dead"
+	elif _velocity.y != 0:
 		$Sprite/AnimatedSprite.animation = "jump"
 	elif _velocity.x != 0:
-		$Sprite/AnimatedSprite.animation = "w"
+		$Sprite/AnimatedSprite.animation = "walk"
 	else:
 		$Sprite/AnimatedSprite.animation = "default"
 
@@ -106,11 +109,13 @@ func calculate_move_velocity(
 
 func _on_Player_hit():
 	print("Player hit")
+	if dead:
+		return
 	dead = true
 	$AnimationPlayer.play("death")
 	$CollisionShape2D.disabled = true
 	$StompDetector/CollisionShape2D.disabled = true
-	$BumpDetector/CollisionShape2D.disabled = true
+	# $BumpDetector/CollisionShape2D.disabled = true
 	self.set_collision_layer_bit(0, false)
 
 
