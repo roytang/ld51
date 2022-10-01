@@ -10,23 +10,30 @@ var time_start:float = 0.0
 var time_now:float = 0.0
 var _player
 var success = false
+var target_time = 10.0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	time_start = Time.get_unix_time_from_system()
-	$Timer.start()
 	_player = $Player
-	_player.connect("hit", self, "_on_Player_hit")
+	if is_instance_valid(_player):
+		_player.connect("hit", self, "_on_Player_hit")
 	var sb = $StageBounds
-	sb.connect("body_exited", self, "_on_StageBounds_body_exited")
+	if is_instance_valid(sb):
+		sb.connect("body_exited", self, "_on_StageBounds_body_exited")
+	
+# called by instantiator
+func start_timer():
+	time_start = Time.get_unix_time_from_system()
+	$Timer.wait_time = target_time
+	$Timer.start()
 	# set_process(true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time_now = Time.get_unix_time_from_system()
 	# compute remaining time
-	var unix_time: float = 10.0 - (time_now - time_start)
+	var unix_time: float = target_time - (time_now - time_start)
 	var unix_time_int: int = unix_time
 	var dt: Dictionary = Time.get_datetime_dict_from_unix_time(unix_time)
 	var ms: int = (unix_time - unix_time_int) * 1000.0

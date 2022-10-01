@@ -88,7 +88,6 @@ playing = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Sprite"]
 frames = SubResource( 5 )
 animation = "dead"
-frame = 1
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

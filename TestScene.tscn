@@ -56,11 +56,28 @@ color = Color( 0.00392157, 0.345098, 0.054902, 1 )
 
 [node name="Label" type="Label" parent="HUD/SuccessMessageBox/ColorRect"]
 margin_right = 509.0
+margin_bottom = 69.0
+theme = ExtResource( 8 )
+text = "DELIVERY COMPLETE!
+"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="HUD/SuccessMessageBox/ColorRect"]
+margin_top = 57.0
+margin_right = 509.0
+margin_bottom = 130.0
+theme = ExtResource( 8 )
+text = "Bonus time"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="HUD/SuccessMessageBox/ColorRect"]
+margin_top = 146.0
+margin_right = 509.0
 margin_bottom = 197.0
 theme = ExtResource( 8 )
-text = "YOU DID IT!
-
-[N]: Continue to the next stage!"
+text = "[N]: Continue to the next stage!"
 align = 1
 valign = 1
 

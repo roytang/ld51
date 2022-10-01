@@ -1,10 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://HintTheme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/block.png" type="Texture" id=2]
 [ext_resource path="res://Stage.gd" type="Script" id=4]
-[ext_resource path="res://StageBounds.gd" type="Script" id=5]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 62, 60, 0, 60, 0, 0, 62, 0 )
@@ -32,10 +30,7 @@ points = PoolVector2Array( 62, 60, 0, 60, 0, 0, 62, 0 )
 } ]
 0/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 512.5, 288.5 )
-
-[node name="Stage000" type="Node2D"]
+[node name="Ending" type="Node2D"]
 script = ExtResource( 4 )
 failable = false
 
@@ -49,6 +44,7 @@ format = 1
 tile_data = PoolIntArray( 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 131071, 0, 0, 65551, 0, 0, 196607, 0, 0, 131087, 0, 0, 262143, 0, 0, 196623, 0, 0, 327679, 0, 0, 262159, 0, 0, 393215, 0, 0, 327695, 0, 0, 458751, 0, 0, 393231, 0, 0, 524287, 0, 0, 458767, 0, 0, 589823, 0, 0, 524303, 0, 0, 655359, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 margin_left = 270.0
 margin_top = 226.0
 margin_right = 727.0
@@ -65,26 +61,27 @@ color = Color( 0, 0, 0, 1 )
 margin_left = 28.0
 margin_top = 6.0
 margin_right = 427.0
-margin_bottom = 118.0
+margin_bottom = 39.0
 theme = ExtResource( 1 )
-text = "Deliver the pizza within 10 seconds 
-or YOU'RE FIRED!
-
-[A] [S] or arrow keys: Move
-[W] or [Space]: Jump
-[N]: Start delivering!"
+text = "You finished all your deliveries! WELL DONE!"
 align = 1
 
-[node name="StageBounds" type="Area2D" parent="."]
-script = ExtResource( 5 )
+[node name="Label2" type="Label" parent="ColorRect/ColorRect"]
+margin_left = 28.0
+margin_top = 45.0
+margin_right = 427.0
+margin_bottom = 105.0
+theme = ExtResource( 1 )
+text = "Stats"
+align = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StageBounds"]
-position = Vector2( 481.5, 313.5 )
-shape = SubResource( 4 )
+[node name="Label3" type="Label" parent="ColorRect/ColorRect"]
+margin_left = 28.0
+margin_top = 110.0
+margin_right = 427.0
+margin_bottom = 141.0
+theme = ExtResource( 1 )
+text = "[N]: Start a new run!"
+align = 1
 
-[node name="Player" parent="." instance=ExtResource( 8 )]
-position = Vector2( 154, 439 )
-
-[connection signal="stage_success" from="." to="Player" method="_on_Stage_stage_success"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="body_entered" from="StageBounds" to="StageBounds" method="_on_StageBounds_body_entered"]

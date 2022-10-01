@@ -63,19 +63,23 @@ func _physics_process(delta):
 			direction = dash_direction
 			_velocity = direction * dash_speed
 
-	if not dead:
-		_velocity = move_and_slide_with_snap(
-			_velocity, snap_vector, FLOOR_NORMAL, not is_on_platform, 4, 0.9, false
-		)
+	if dead or success:
+		# we still let the player drop to the ground on death or success
+		_velocity.x = 0.0
 		
-		# When the character’s direction changes, we want to to scale the Sprite accordingly to flip it.
-		if direction.x != 0:
-			if direction.x > 0:
-				sprite.scale.x = 1
-				shape.scale.x = 1
-			else:
-				sprite.scale.x = -1
-				shape.scale.x = -1
+		
+	_velocity = move_and_slide_with_snap(
+		_velocity, snap_vector, FLOOR_NORMAL, not is_on_platform, 4, 0.9, false
+	)
+		
+	# When the character’s direction changes, we want to to scale the Sprite accordingly to flip it.
+	if direction.x != 0:
+		if direction.x > 0:
+			sprite.scale.x = 1
+			shape.scale.x = 1
+		else:
+			sprite.scale.x = -1
+			shape.scale.x = -1
 			
 	if dead:
 		$Sprite/AnimatedSprite.animation = "dead"
