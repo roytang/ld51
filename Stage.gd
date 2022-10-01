@@ -3,12 +3,10 @@ extends Node2D
 signal time_update
 signal stage_success
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var time_start:float = 0.0
 var time_now:float = 0.0
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -17,5 +17,5 @@ func _ready():
 
 
 func _on_Stage_time_update(label1, label2):
-	$ColorRect/SecondsLabel.text = label1
-	$ColorRect/MillisecondsLabel.text = label2
+	$TimerDisplay/SecondsLabel.text = label1
+	$TimerDisplay/MillisecondsLabel.text = label2
