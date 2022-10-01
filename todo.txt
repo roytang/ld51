@@ -1,10 +1,11 @@
-HUD - timer
-end stage on delivery
-camera and stage bounds
+HUD - timer [ok]
+end stage on delivery [ok]
+camera and stage bounds [ok]
 background tiles
-death loop
-stage transition / selection map?
-walking enemies
+falling to death
+death/reload loop
+stage transition / selection map? [ok]
+walking enemies [ok]
 flying enemies
-wall jump
-
+wall jump [ok]
+carry bonus time across stages

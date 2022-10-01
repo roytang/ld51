@@ -2,16 +2,20 @@ extends Node2D
 
 signal time_update
 signal stage_success
+signal stage_failed
 
 var time_start:float = 0.0
 var time_now:float = 0.0
-
-
+var _player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	time_start = Time.get_unix_time_from_system()
 	$Timer.start()
+	_player = $Player
+	_player.connect("hit", self, "_on_Player_hit")
+	var sb = $StageBounds
+	sb.connect("body_exited", self, "_on_StageBounds_body_exited")
 	# set_process(true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,8 +36,21 @@ func _process(delta):
 
 func _on_Timer_timeout():
 	print("TIMEOUT")
+	set_process(false)
+	emit_signal("stage_failed", "You took too long!")
 
 
 func _on_Customer_delivered():
 	set_process(false)
 	emit_signal("stage_success")
+
+
+func _on_Player_hit():
+	set_process(false)
+	emit_signal("stage_failed", "You dropped the pizza!")
+
+func _on_StageBounds_body_exited(body):
+	print(body)
+	if body.is_in_group("player"):
+		set_process(false)
+		emit_signal("stage_failed", "You fell in a hole!")

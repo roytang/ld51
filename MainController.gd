@@ -1,7 +1,8 @@
 extends Node2D
 
 var stages = [
-	"res://Stages/Stage002.tscn",
+	"res://Stages/Stage001.tscn",
+	"res://Stages/Stage000.tscn",
 	"res://Stages/Stage001.tscn",
 	"res://Stages/Stage002.tscn",
 	]
@@ -25,6 +26,10 @@ func _on_Stage_stage_success():
 	print("stage success!")
 	$HUD/SuccessMessageBox.visible = true
 
+func _on_Stage_stage_failed(message):
+	print("stage failed!")
+	$HUD/FailureMessageBox.visible = true
+	$HUD/FailureMessageBox/ColorRect/Label.text = message
 
 func load_stage():
 	var stage_path = stages[current_stage]
@@ -48,6 +53,7 @@ func next_stage():
 
 func _attach_events():
 	if is_instance_valid(current_stage_ref):
+		current_stage_ref.connect("stage_failed", self, "_on_Stage_stage_failed")
 		current_stage_ref.connect("stage_success", self, "_on_Stage_stage_success")
 		current_stage_ref.connect("time_update", $HUD, "_on_Stage_time_update")
 	
@@ -55,4 +61,11 @@ func _input(event):
 	if event.is_action_pressed("next") and is_instance_valid(current_stage_ref):
 		reload_count += 1
 		next_stage()
+		$HUD/FailureMessageBox.visible = false
+		$HUD/SuccessMessageBox.visible = false
+	if event.is_action_pressed("reload") and is_instance_valid(current_stage_ref):
+		reload_count += 1
+		load_stage()
+		$HUD/FailureMessageBox.visible = false
+		$HUD/SuccessMessageBox.visible = false
 

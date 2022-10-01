@@ -23,3 +23,5 @@ func _on_StageBounds_body_entered(body):
 		body.emit_signal("set_camera_limit", 1, (position.y - extents.y))
 		body.emit_signal("set_camera_limit", 2, (position.x + extents.x))
 		body.emit_signal("set_camera_limit", 3, (position.y + extents.y))
+
+
