@@ -4,6 +4,7 @@ signal hit
 signal collect_coin
 signal update_hud
 signal set_camera_limit
+signal start_dash
 
 export var speed = Vector2(250.0, 300.0)
 onready var gravity = 500
@@ -21,14 +22,24 @@ var coins = 0
 var dead = false
 var success = false
 
+var dashing = false
+var dash_direction = Vector2(0, 0)
+var dash_speed = 1000.0
+var dash_start = 0
+var dash_duration = 0.5
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if dashing:
+		var time_now = Time.get_unix_time_from_system()
+		# compute remaining time
+		var unix_time: float = dash_duration - (time_now - dash_start)
+		if unix_time < 0:
+			dashing = false
 
 func _physics_process(delta):
 
@@ -42,6 +53,15 @@ func _physics_process(delta):
 	if direction.y == 0.0:
 		snap_vector = Vector2.DOWN * FLOOR_DETECT_DISTANCE
 	var is_on_platform = false
+	
+	if dashing:
+		# jumping cancels the dash
+		if Input.is_action_just_pressed("jump"):
+			dashing = false
+		else:
+			# dashing ignores all of the above!
+			direction = dash_direction
+			_velocity = direction * dash_speed
 
 	if not dead:
 		_velocity = move_and_slide_with_snap(
@@ -94,6 +114,9 @@ func get_direction():
 
 func _can_jump(hdir):
 	if is_on_floor():
+		return true
+	# can always jump when dashing
+	if dashing:
 		return true
 	var close = _is_close_to_wall(rightwallcheck)
 	# print("close ", close, hdir)
@@ -182,3 +205,9 @@ func _on_Player_set_camera_limit(margin, position):
 
 func _on_Stage_stage_success():
 	success = true
+
+
+func _on_Player_start_dash(dashdir:Vector2):
+	dashing = true
+	dash_direction = dashdir
+	dash_start = Time.get_unix_time_from_system()

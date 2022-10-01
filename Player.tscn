@@ -129,4 +129,5 @@ cast_to = Vector2( 10, 0 )
 
 [connection signal="hit" from="." to="." method="_on_Player_hit"]
 [connection signal="set_camera_limit" from="." to="." method="_on_Player_set_camera_limit"]
+[connection signal="start_dash" from="." to="." method="_on_Player_start_dash"]
 [connection signal="body_entered" from="StompDetector" to="." method="_on_StompDetector_body_entered"]

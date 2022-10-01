@@ -7,6 +7,7 @@ var stages = [
 	"res://Stages/Stage002.tscn",
 	"res://Stages/Stage003.tscn",
 	"res://Stages/Stage004.tscn",
+	"res://Stages/Stage005.tscn",
 	]
 
 var reload_count = 0
