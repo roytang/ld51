@@ -39,7 +39,7 @@ points = PoolVector2Array( 62, 60, 0, 60, 0, 0, 62, 0 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 1921.5, 306 )
 
-[node name="Stage005" type="Node2D"]
+[node name="Stage006" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="Timer" type="Timer" parent="."]
@@ -65,7 +65,7 @@ margin_top = 6.0
 margin_right = 427.0
 margin_bottom = 118.0
 theme = ExtResource( 1 )
-text = "Delivery no. 5
+text = "Delivery no. 6
 
 Jump into a Dash Arrow for an 
 instant burst of speed!"

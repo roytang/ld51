@@ -86,13 +86,13 @@ tile_data = PoolIntArray( 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0,
 margin_left = 270.0
 margin_top = 226.0
 margin_right = 727.0
-margin_bottom = 378.0
+margin_bottom = 408.0
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 456.0
-margin_bottom = 151.0
+margin_bottom = 181.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="Label" type="Label" parent="ColorRect/ColorRect"]
@@ -106,7 +106,9 @@ or YOU'RE FIRED!
 
 [A] [S] or arrow keys: Move
 [W] or [Space]: Jump
-[N]: Start delivering!"
+[Q]: Abandon run
+[N]: Start delivering!
+"
 align = 1
 
 [node name="StageBounds" type="Area2D" parent="."]
@@ -123,7 +125,7 @@ position = Vector2( 154, 439 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 787, 143 )
 frames = SubResource( 5 )
-frame = 2
+frame = 3
 playing = true
 
 [connection signal="stage_success" from="." to="Player" method="_on_Stage_stage_success"]

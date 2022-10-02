@@ -73,11 +73,14 @@ func load_stage():
 		$HUD/SuccessMessageBox/ColorRect/Label.text = "You finished all your deliveries! WELL DONE!\nTake a well-deserved rest. Thanks for playing!"
 		var lbl = $HUD/SuccessMessageBox/ColorRect/Label2
 		lbl.text = ""
-		if bonus_count > 0:
-			lbl.text = lbl.text + "Bonus Stars: " + str(bonus_count) + "\n"
 		lbl.text = lbl.text + "Reloads: " + str(reload_count)
 		if reload_count == 0:
-			lbl.text = lbl.text + "! GOOD JOB!"
+			lbl.text = lbl.text + "! PERFECT RUN!"
+		lbl.text = lbl.text + "\n"
+		if bonus_count > 0:
+			lbl.text = lbl.text + "Bonus Stars: " + str(bonus_count) + "\n"
+		else:
+			lbl.text = lbl.text + "You didn't even need any fancy Bonus Stars!\n"
 		$HUD/SuccessMessageBox/ColorRect/Label3.text = "[N]: Start a new game"
 		$HUD/SuccessMessageBox.visible = true
 	else:
@@ -117,4 +120,20 @@ func _input(event):
 		$HUD/SuccessMessageBox.visible = false
 		load_stage()
 		$HUD/FailureMessageBox.visible = false
+	if event.is_action_pressed("quit") and is_instance_valid(current_stage_ref):
+		if current_stage_ref.name == "Stage000" or current_stage_ref.name == "Ending":
+			return
+		if $HUD/FailureMessageBox.visible:
+			# reload from start
+			current_stage = -1
+			bonus_time = 0.0
+			bonus_count = 0
+			reload_count = 0
+			$HUD/SuccessMessageBox.visible = false
+			$HUD/FailureMessageBox.visible = false
+			next_stage()
+			$HUD/SuccessMessageBox.visible = false
+			$HUD/FailureMessageBox.visible = false
+		else:
+			_on_Stage_stage_failed("Abandon Run: Are you sure?")
 
