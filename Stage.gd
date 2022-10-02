@@ -22,6 +22,9 @@ func _ready():
 	var sb = $StageBounds
 	if is_instance_valid(sb):
 		sb.connect("body_exited", self, "_on_StageBounds_body_exited")
+	var ap = $AnimationPlayer
+	if is_instance_valid(ap):
+		ap.play("default")
 	
 # called by instantiator
 func start_timer():

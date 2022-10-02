@@ -1,0 +1,142 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/block.png" type="Texture" id=1]
+[ext_resource path="res://Stage.gd" type="Script" id=2]
+[ext_resource path="res://StageBounds.gd" type="Script" id=3]
+[ext_resource path="res://Platform.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemies/Flyer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://BonusStar.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Customer.tscn" type="PackedScene" id=9]
+[ext_resource path="res://HintTheme.tres" type="Theme" id=10]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 62, 60, 0, 60, 0, 0, 62, 0 )
+
+[sub_resource type="TileSet" id=2]
+0/name = "block.png 0"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 64, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 1 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 1267.5, 306 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "default"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Platforms:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 2000, 0 ) ]
+}
+
+[node name="Stage010" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 253.0
+margin_top = 140.0
+margin_right = 610.0
+margin_bottom = 240.0
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 456.0
+margin_bottom = 121.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Label" type="Label" parent="ColorRect/ColorRect"]
+margin_left = 28.0
+margin_top = 6.0
+margin_right = 427.0
+margin_bottom = 118.0
+theme = ExtResource( 10 )
+text = "Delivery no. 10
+
+Catch a ride!"
+align = 1
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 2 )
+format = 1
+tile_data = PoolIntArray( -1, 0, 0, 65535, 0, 0, 131071, 0, 0, 196607, 0, 0, 262143, 0, 0, 196635, 0, 0, 196636, 0, 0, 327679, 0, 0, 262182, 0, 0, 262183, 0, 0, 393215, 0, 0, 327702, 0, 0, 327703, 0, 0, 327715, 0, 0, 327716, 0, 0, 327717, 0, 0, 327718, 0, 0, 327719, 0, 0, 458751, 0, 0, 393238, 0, 0, 393239, 0, 0, 393251, 0, 0, 393252, 0, 0, 393253, 0, 0, 393254, 0, 0, 393255, 0, 0, 524287, 0, 0, 458770, 0, 0, 458771, 0, 0, 458787, 0, 0, 458788, 0, 0, 458789, 0, 0, 458790, 0, 0, 458791, 0, 0, 589823, 0, 0, 524306, 0, 0, 524307, 0, 0, 524322, 0, 0, 524323, 0, 0, 524324, 0, 0, 524325, 0, 0, 524326, 0, 0, 524327, 0, 0, 655359, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589857, 0, 0, 589858, 0, 0, 589859, 0, 0, 589860, 0, 0, 589861, 0, 0, 589862, 0, 0, 589863, 0, 0 )
+
+[node name="StageBounds" type="Area2D" parent="."]
+visible = false
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StageBounds"]
+position = Vector2( 1257.5, 296 )
+shape = SubResource( 4 )
+
+[node name="Customer" parent="." instance=ExtResource( 9 )]
+position = Vector2( 2337, 289 )
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 311, 515 )
+
+[node name="BonusStar" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1771, 163 )
+
+[node name="Flyer" parent="BonusStar" instance=ExtResource( 6 )]
+position = Vector2( -667, 345 )
+
+[node name="Flyer2" parent="BonusStar" instance=ExtResource( 6 )]
+position = Vector2( -408, 239 )
+
+[node name="Flyer3" parent="BonusStar" instance=ExtResource( 6 )]
+position = Vector2( 293, 122 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/default = SubResource( 5 )
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Platform" parent="Platforms" instance=ExtResource( 4 )]
+position = Vector2( 59, 506 )
+
+[node name="Platform2" parent="Platforms" instance=ExtResource( 4 )]
+position = Vector2( -87, 441 )
+
+[node name="Platform3" parent="Platforms" instance=ExtResource( 4 )]
+position = Vector2( 11, 382 )
+
+[node name="Platform4" parent="Platforms" instance=ExtResource( 4 )]
+position = Vector2( -88, 320 )
+
+[connection signal="stage_success" from="." to="Player" method="_on_Stage_stage_success"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="body_entered" from="StageBounds" to="StageBounds" method="_on_StageBounds_body_entered"]
+[connection signal="delivered" from="Customer" to="." method="_on_Customer_delivered"]
+[connection signal="delivered" from="Customer" to="Player" method="_on_Customer_delivered"]
+[connection signal="bonus" from="BonusStar" to="." method="_on_BonusStar_bonus"]
