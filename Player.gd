@@ -49,6 +49,9 @@ func _physics_process(delta):
 	var is_jump_interrupted = Input.is_action_just_released("jump") and _velocity.y < 0.0
 	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
 	
+	if _can_jump(direction.x) and Input.is_action_just_pressed("jump"):
+		$JumpSound.play()
+	
 	var snap_vector = Vector2.ZERO
 	if direction.y == 0.0:
 		snap_vector = Vector2.DOWN * FLOOR_DETECT_DISTANCE
@@ -157,7 +160,7 @@ func calculate_move_velocity(
 
 
 func _on_Player_hit():
-	print("Player hit")
+	# print("Player hit")
 	if dead:
 		return
 	dead = true
@@ -166,11 +169,12 @@ func _on_Player_hit():
 	$StompDetector/CollisionShape2D.disabled = true
 	# $BumpDetector/CollisionShape2D.disabled = true
 	self.set_collision_layer_bit(0, false)
+	$HitSound.play()
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "death":
-		print("Death anim ended")
+		# print("Death anim ended")
 		$Sprite.queue_free()
 
 

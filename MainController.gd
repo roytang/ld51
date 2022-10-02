@@ -30,7 +30,7 @@ func _ready():
 
 
 func _on_Stage_stage_success(bonus):
-	print("stage success!")
+	# print("stage success!")
 	$HUD/SuccessMessageBox.visible = true
 	var seconds = $HUD/TimerDisplay/SecondsLabel.text
 	var ms = $HUD/TimerDisplay/MillisecondsLabel.text
@@ -39,14 +39,14 @@ func _on_Stage_stage_success(bonus):
 		$HUD/SuccessMessageBox/ColorRect/Label2.text = "Bonus time: " + seconds + ":" + ms
 		bonus_time = int(seconds) * 1000 + int(ms)
 		bonus_time = bonus_time / 1000
-		print(bonus_time)
+		# print(bonus_time)
 		bonus_count = bonus_count + 1
 	else:
 		$HUD/SuccessMessageBox/ColorRect/Label2.text = ""
 		bonus_time = 0
 
 func _on_Stage_stage_failed(message):
-	print("stage failed!")
+	# print("stage failed!")
 	$HUD/FailureMessageBox.visible = true
 	$HUD/FailureMessageBox/ColorRect/Label.text = message
 
@@ -59,7 +59,7 @@ func load_stage():
 	add_child(scene)
 	call_deferred("_attach_events")
 	
-	print(current_stage_ref.name)
+	# print(current_stage_ref.name)
 	current_stage_ref.target_time = current_stage_ref.target_time + bonus_time
 	current_stage_ref.start_timer()
 		

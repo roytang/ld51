@@ -19,4 +19,11 @@ func _ready():
 func _on_BonusStar_body_entered(body):
 	if body.is_in_group("player"):
 		emit_signal("bonus")
+		$PickupSound.play()
+		$AnimationPlayer.play("pickup")
+		
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "pickup":
 		queue_free()

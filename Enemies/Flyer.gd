@@ -104,9 +104,9 @@ func calculate_move_velocity(
 func _on_Hitbox_body_entered(body):
 	if dead:
 		return
-	print("BODY ENTERED!")
+	# print("BODY ENTERED!")
 	if body.is_in_group("player"):
-		print("HIT!")
+		# print("HIT!")
 		body.emit_signal("hit")
 
 
@@ -116,7 +116,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _on_Flyer_stomp():
-	print("I got stomped!")
+	# print("I got stomped!")
 	if dead:
 		return
 	dead = true
@@ -125,3 +125,4 @@ func _on_Flyer_stomp():
 	$AnimatedSprite.stop()
 	self.set_collision_layer_bit(0, false)
 	$AnimationPlayer.play("death")
+	$HitSound.play()

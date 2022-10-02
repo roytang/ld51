@@ -47,7 +47,7 @@ func _process(delta):
 		emit_signal("time_update", "00", "000")
 
 func _on_Timer_timeout():
-	print("TIMEOUT")
+	# print("TIMEOUT")
 	if failable:
 		emit_signal("time_update", "00", "000")
 		set_process(false)
@@ -65,7 +65,7 @@ func _on_Player_hit():
 	emit_signal("stage_failed", "You dropped the pizza!")
 
 func _on_StageBounds_body_exited(body):
-	print(body)
+	# print(body)
 	if body.is_in_group("player"):
 		set_process(false)
 		_player.dead = true

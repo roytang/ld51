@@ -13,11 +13,11 @@ func _ready():
 
 
 func _on_StageBounds_body_entered(body):
-	print(body)
+	# print(body)
 	if body.is_in_group("player"):
 		var extents = $CollisionShape2D.shape.get_extents()
 		var position = $CollisionShape2D.position
-		print(extents, position)
+		# print(extents, position)
 		# -1 = NONE, 0 = LEFT, 1 = TOP, 2 = RIGHT, 3 = BOTTOM
 		body.emit_signal("set_camera_limit", 0, (position.x - extents.x))
 		body.emit_signal("set_camera_limit", 1, (position.y - extents.y))
