@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/bonus.wav-d583789b7b3f7a63761c9ea3e2c6411e.sample"
+path="res://.import/hitHurt.wav-e6ee52d0687a111c7369eb0d8641ae8d.sample"
 
 [deps]
 
-source_file="res://sfx/bonus.wav"
-dest_files=[ "res://.import/bonus.wav-d583789b7b3f7a63761c9ea3e2c6411e.sample" ]
+source_file="res://audio/hitHurt.wav"
+dest_files=[ "res://.import/hitHurt.wav-e6ee52d0687a111c7369eb0d8641ae8d.sample" ]
 
 [params]
 

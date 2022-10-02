@@ -11,8 +11,8 @@
 [ext_resource path="res://assets/pizzabox3.png" type="Texture" id=9]
 [ext_resource path="res://assets/char_idle_07.png" type="Texture" id=10]
 [ext_resource path="res://assets/char_idle_08.png" type="Texture" id=11]
-[ext_resource path="res://sfx/jump.wav" type="AudioStream" id=12]
-[ext_resource path="res://sfx/hitHurt.wav" type="AudioStream" id=13]
+[ext_resource path="res://audio/jump.wav" type="AudioStream" id=12]
+[ext_resource path="res://audio/hitHurt.wav" type="AudioStream" id=13]
 
 [sub_resource type="CircleShape2D" id=4]
 radius = 21.0238
