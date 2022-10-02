@@ -1,10 +1,19 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://HintTheme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/block.png" type="Texture" id=2]
+[ext_resource path="res://assets/pizzalogo3.png" type="Texture" id=3]
 [ext_resource path="res://Stage.gd" type="Script" id=4]
 [ext_resource path="res://StageBounds.gd" type="Script" id=5]
+[ext_resource path="res://assets/pizzalogo1.png" type="Texture" id=6]
+[ext_resource path="res://assets/pizzalogo4.png" type="Texture" id=7]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/pizzalogo2.png" type="Texture" id=9]
+[ext_resource path="res://assets/Xolonium-Regular.ttf" type="DynamicFontData" id=10]
+
+[sub_resource type="DynamicFont" id=6]
+size = 54
+font_data = ExtResource( 10 )
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 62, 60, 0, 60, 0, 0, 62, 0 )
@@ -35,6 +44,14 @@ points = PoolVector2Array( 62, 60, 0, 60, 0, 0, 62, 0 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 512.5, 288.5 )
 
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="Stage000" type="Node2D"]
 script = ExtResource( 4 )
 failable = false
@@ -42,6 +59,23 @@ failable = false
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+margin_left = -31.0
+margin_top = 33.0
+margin_right = 969.0
+margin_bottom = 307.0
+color = Color( 0.105882, 0.643137, 0.0862745, 1 )
+
+[node name="Label" type="Label" parent="ColorRect2"]
+margin_left = 152.0
+margin_top = 53.0
+margin_right = 869.0
+margin_bottom = 188.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "10 SECOND 
+PIZZA DELIVERY"
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
@@ -76,6 +110,7 @@ or YOU'RE FIRED!
 align = 1
 
 [node name="StageBounds" type="Area2D" parent="."]
+visible = false
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StageBounds"]
@@ -84,6 +119,11 @@ shape = SubResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
 position = Vector2( 154, 439 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 787, 143 )
+frames = SubResource( 5 )
+playing = true
 
 [connection signal="stage_success" from="." to="Player" method="_on_Stage_stage_success"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
