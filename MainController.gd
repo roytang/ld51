@@ -8,6 +8,7 @@ var stages = [
 	"res://Stages/Stage004.tscn",
 	"res://Stages/Stage005.tscn",
 	"res://Stages/Stage006.tscn",
+	"res://Stages/Stage007.tscn",
 	"res://Stages/Ending.tscn",
 	]
 
@@ -70,7 +71,7 @@ func load_stage():
 		var lbl = $HUD/SuccessMessageBox/ColorRect/Label2
 		lbl.text = ""
 		if bonus_count > 0:
-			lbl.text = lbl.text + "Bonus: " + str(bonus_count) + "\n"
+			lbl.text = lbl.text + "Bonus Stars: " + str(bonus_count) + "\n"
 		lbl.text = lbl.text + "Reloads: " + str(reload_count)
 		if reload_count == 0:
 			lbl.text = lbl.text + " GOOD JOB!"
