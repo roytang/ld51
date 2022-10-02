@@ -123,6 +123,7 @@ position = Vector2( 154, 439 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 787, 143 )
 frames = SubResource( 5 )
+frame = 2
 playing = true
 
 [connection signal="stage_success" from="." to="Player" method="_on_Stage_stage_success"]

@@ -73,6 +73,7 @@ tracks/0/keys = {
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 position = Vector2( 146, 398 )
+z_index = 2
 collision_layer = 2
 script = ExtResource( 4 )
 
@@ -90,7 +91,6 @@ playing = true
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Sprite"]
 frames = SubResource( 5 )
 animation = "dead"
-frame = 1
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

@@ -82,7 +82,7 @@ position = Vector2( 589.5, 296 )
 shape = SubResource( 4 )
 
 [node name="Customer" parent="." instance=ExtResource( 6 )]
-position = Vector2( 679, 161 )
+position = Vector2( 531, 161 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 133, 515 )

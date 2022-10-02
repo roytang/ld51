@@ -6,8 +6,8 @@
 [ext_resource path="res://StageBounds.gd" type="Script" id=4]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Customer.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Enemies/Flyer.tscn" type="PackedScene" id=7]
-[ext_resource path="res://DashArrow.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Platform.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Enemies/Walker.tscn" type="PackedScene" id=8]
 [ext_resource path="res://BonusStar.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -37,7 +37,7 @@ points = PoolVector2Array( 62, 60, 0, 60, 0, 0, 62, 0 )
 0/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 1921.5, 306 )
+extents = Vector2( 580.25, 524 )
 
 [node name="Stage005" type="Node2D"]
 script = ExtResource( 3 )
@@ -47,9 +47,9 @@ wait_time = 10.0
 one_shot = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = 153.0
+margin_left = 331.0
 margin_top = 118.0
-margin_right = 610.0
+margin_right = 788.0
 margin_bottom = 240.0
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect"]
@@ -67,95 +67,84 @@ margin_bottom = 118.0
 theme = ExtResource( 1 )
 text = "Delivery no. 5
 
-Jump into a Dash Arrow for an 
-instant burst of speed!"
-align = 1
-
-[node name="ColorRect2" type="ColorRect" parent="."]
-margin_left = 1800.0
-margin_top = 240.0
-margin_right = 2257.0
-margin_bottom = 362.0
-
-[node name="ColorRect" type="ColorRect" parent="ColorRect2"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 456.0
-margin_bottom = 121.0
-color = Color( 0, 0, 0, 1 )
-
-[node name="Label" type="Label" parent="ColorRect2/ColorRect"]
-margin_left = 28.0
-margin_top = 6.0
-margin_right = 427.0
-margin_bottom = 118.0
-theme = ExtResource( 1 )
-text = "You can air  jump out of a dash.
-
-But make sure you jump before the dash ends!"
+You can pass through some 
+platforms from below."
 align = 1
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
 format = 1
-tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -65526, 0, 0, -65525, 0, 0, -65524, 0, 0, -65523, 0, 0, -65522, 0, 0, -65521, 0, 0, -65520, 0, 0, -65519, 0, 0, -65518, 0, 0, -65517, 0, 0, -65516, 0, 0, 65535, 0, 0, 59, 0, 0, 60, 0, 0, 131071, 0, 0, 65595, 0, 0, 65596, 0, 0, 196607, 0, 0, 131131, 0, 0, 131132, 0, 0, 262143, 0, 0, 196667, 0, 0, 196668, 0, 0, 327679, 0, 0, 262161, 0, 0, 262203, 0, 0, 262204, 0, 0, 393215, 0, 0, 327697, 0, 0, 327739, 0, 0, 327740, 0, 0, 458751, 0, 0, 393233, 0, 0, 393275, 0, 0, 393276, 0, 0, 524287, 0, 0, 458769, 0, 0, 458811, 0, 0, 458812, 0, 0, 589823, 0, 0, 524347, 0, 0, 524348, 0, 0, 655359, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589840, 0, 0, 589841, 0, 0, 589842, 0, 0, 589843, 0, 0, 589844, 0, 0, 589856, 0, 0, 589857, 0, 0, 589858, 0, 0, 589859, 0, 0, 589877, 0, 0, 589878, 0, 0, 589879, 0, 0, 589880, 0, 0, 589881, 0, 0, 589882, 0, 0, 589883, 0, 0, 589884, 0, 0 )
+tile_data = PoolIntArray( -262145, 0, 0, -327680, 0, 0, -327679, 0, 0, -327678, 0, 0, -327677, 0, 0, -327676, 0, 0, -327675, 0, 0, -327663, 0, 0, -196609, 0, 0, -262144, 0, 0, -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -262139, 0, 0, -262127, 0, 0, -131073, 0, 0, -196608, 0, 0, -196607, 0, 0, -196606, 0, 0, -196605, 0, 0, -196604, 0, 0, -196603, 0, 0, -196591, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131070, 0, 0, -131069, 0, 0, -131068, 0, 0, -131067, 0, 0, -131055, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65519, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 17, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65553, 0, 0, 196607, 0, 0, 131089, 0, 0, 262143, 0, 0, 196625, 0, 0, 327679, 0, 0, 262161, 0, 0, 393215, 0, 0, 327697, 0, 0, 458751, 0, 0, 393233, 0, 0, 524287, 0, 0, 458769, 0, 0, 589823, 0, 0, 524305, 0, 0, 655359, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0, 589840, 0, 0, 589841, 0, 0 )
 
 [node name="StageBounds" type="Area2D" parent="."]
 visible = false
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StageBounds"]
-position = Vector2( 1911.5, 296 )
+position = Vector2( 548.75, 76 )
 shape = SubResource( 4 )
 
 [node name="Customer" parent="." instance=ExtResource( 6 )]
-position = Vector2( 3641, 542 )
+position = Vector2( 399, 34 )
+scale = Vector2( -1, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
-position = Vector2( 133, 515 )
+position = Vector2( 541, 537 )
 
-[node name="Flyer" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1548, 618 )
-target_node_path = NodePath("../FlyerTarget1")
+[node name="Platform" parent="." instance=ExtResource( 7 )]
+position = Vector2( 365, 501 )
 
-[node name="FlyerTarget1" type="Node2D" parent="."]
-position = Vector2( 1548, 418 )
+[node name="Platform2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 721, 499 )
 
-[node name="Flyer3" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1286, 253 )
-target_node_path = NodePath("../FlyerTarget1")
+[node name="Platform3" parent="." instance=ExtResource( 7 )]
+position = Vector2( 549, 441 )
 
-[node name="FlyerTarget3" type="Node2D" parent="."]
-position = Vector2( 1286, 53 )
+[node name="Platform4" parent="." instance=ExtResource( 7 )]
+position = Vector2( 195, 439 )
 
-[node name="Flyer2" parent="." instance=ExtResource( 7 )]
-position = Vector2( 930, 53 )
-target_node_path = NodePath("../FlyerTarget2")
+[node name="Platform5" parent="." instance=ExtResource( 7 )]
+position = Vector2( 875, 439 )
 
-[node name="FlyerTarget2" type="Node2D" parent="."]
-position = Vector2( 930, 253 )
+[node name="Platform6" parent="." instance=ExtResource( 7 )]
+position = Vector2( 447, 369 )
+
+[node name="Platform7" parent="." instance=ExtResource( 7 )]
+position = Vector2( 797, 369 )
+
+[node name="Platform8" parent="." instance=ExtResource( 7 )]
+position = Vector2( 283, 295 )
+
+[node name="Platform9" parent="." instance=ExtResource( 7 )]
+position = Vector2( 633, 293 )
+
+[node name="Platform10" parent="." instance=ExtResource( 7 )]
+position = Vector2( 959, 293 )
+
+[node name="Platform11" parent="." instance=ExtResource( 7 )]
+position = Vector2( 157, 225 )
+
+[node name="Platform12" parent="." instance=ExtResource( 7 )]
+position = Vector2( 545, 225 )
+
+[node name="Platform13" parent="." instance=ExtResource( 7 )]
+position = Vector2( 883, 221 )
+
+[node name="Platform14" parent="." instance=ExtResource( 7 )]
+position = Vector2( 967, 145 )
 
 [node name="BonusStar" parent="." instance=ExtResource( 9 )]
-position = Vector2( 1965, 405 )
+position = Vector2( 273, 169 )
 
-[node name="Flyer4" parent="." instance=ExtResource( 7 )]
-position = Vector2( 2575, 449 )
-target_node_path = NodePath("../FlyerTarget2")
+[node name="Walker2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 985, 188 )
 
-[node name="FlyerTarget4" type="Node2D" parent="."]
-position = Vector2( 2575, 649 )
+[node name="Walker3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 203, 412 )
 
-[node name="DashArrow" parent="." instance=ExtResource( 8 )]
-position = Vector2( 487, 479 )
-
-[node name="DashArrow2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1426, 487 )
-
-[node name="DashArrow3" parent="." instance=ExtResource( 8 )]
-position = Vector2( 2437, 508 )
-
-[node name="DashArrow4" parent="." instance=ExtResource( 8 )]
-position = Vector2( 2952, 438 )
+[node name="Walker" parent="." instance=ExtResource( 8 )]
+position = Vector2( 313, 256 )
+initial_facing = 1
 
 [connection signal="stage_success" from="." to="Player" method="_on_Stage_stage_success"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
