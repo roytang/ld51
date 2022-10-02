@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://HintTheme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/block.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Customer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Enemies/Walker.tscn" type="PackedScene" id=7]
+[ext_resource path="res://BonusStar.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 62, 60, 0, 60, 0, 0, 62, 0 )
@@ -93,8 +94,12 @@ position = Vector2( 611, 558 )
 position = Vector2( 218, 364 )
 initial_facing = 1
 
+[node name="BonusStar" parent="." instance=ExtResource( 8 )]
+position = Vector2( 32, 194 )
+
 [connection signal="stage_success" from="." to="Player" method="_on_Stage_stage_success"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="StageBounds" to="StageBounds" method="_on_StageBounds_body_entered"]
 [connection signal="delivered" from="Customer" to="." method="_on_Customer_delivered"]
 [connection signal="delivered" from="Customer" to="Player" method="_on_Customer_delivered"]
+[connection signal="bonus" from="BonusStar" to="." method="_on_BonusStar_bonus"]

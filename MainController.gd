@@ -17,7 +17,7 @@ var current_stage_ref
 var waiting_for_reload_input = false
 var bonus_time:float = 0.0
 var bonus_time_str
-
+var bonus_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,16 +28,21 @@ func _ready():
 #	pass
 
 
-func _on_Stage_stage_success():
+func _on_Stage_stage_success(bonus):
 	print("stage success!")
 	$HUD/SuccessMessageBox.visible = true
 	var seconds = $HUD/TimerDisplay/SecondsLabel.text
 	var ms = $HUD/TimerDisplay/MillisecondsLabel.text
 
-	$HUD/SuccessMessageBox/ColorRect/Label2.text = "Bonus time: " + seconds + ":" + ms
-	bonus_time = int(seconds) * 1000 + int(ms)
-	bonus_time = bonus_time / 1000
-	print(bonus_time)
+	if bonus:
+		$HUD/SuccessMessageBox/ColorRect/Label2.text = "Bonus time: " + seconds + ":" + ms
+		bonus_time = int(seconds) * 1000 + int(ms)
+		bonus_time = bonus_time / 1000
+		print(bonus_time)
+		bonus_count = bonus_count + 1
+	else:
+		$HUD/SuccessMessageBox/ColorRect/Label2.text = ""
+		bonus_time = 0
 
 func _on_Stage_stage_failed(message):
 	print("stage failed!")
@@ -62,9 +67,13 @@ func load_stage():
 	if current_stage_ref.name == "Ending":
 		# show stats
 		$HUD/SuccessMessageBox/ColorRect/Label.text = "You finished all your deliveries! WELL DONE!\nTake a well-deserved rest. Thanks for playing!"
-		$HUD/SuccessMessageBox/ColorRect/Label2.text = $HUD/SuccessMessageBox/ColorRect/Label2.text + "\nReloads: " + str(reload_count)
+		var lbl = $HUD/SuccessMessageBox/ColorRect/Label2
+		lbl.text = ""
+		if bonus_count > 0:
+			lbl.text = lbl.text + "Bonus: " + str(bonus_count) + "\n"
+		lbl.text = lbl.text + "Reloads: " + str(reload_count)
 		if reload_count == 0:
-			$HUD/SuccessMessageBox/ColorRect/Label2.text = $HUD/SuccessMessageBox/ColorRect/Label2.text + " GOOD JOB!"
+			lbl.text = lbl.text + " GOOD JOB!"
 		$HUD/SuccessMessageBox/ColorRect/Label3.text = "[N]: Start a new game"
 		$HUD/SuccessMessageBox.visible = true
 	else:
@@ -90,6 +99,7 @@ func _input(event):
 			# reload from start
 			current_stage = -1
 			bonus_time = 0.0
+			bonus_count = 0
 			reload_count = 0
 			$HUD/SuccessMessageBox.visible = false
 			$HUD/FailureMessageBox.visible = false

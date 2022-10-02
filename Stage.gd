@@ -11,6 +11,7 @@ var time_now:float = 0.0
 var _player
 var success = false
 var target_time = 10.0
+var bonus = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -54,9 +55,9 @@ func _on_Timer_timeout():
 
 
 func _on_Customer_delivered():
-	set_process(false)
 	$Timer.stop()
-	emit_signal("stage_success")
+	emit_signal("stage_success", bonus)
+	set_process(false)
 
 
 func _on_Player_hit():
@@ -69,3 +70,7 @@ func _on_StageBounds_body_exited(body):
 		set_process(false)
 		_player.dead = true
 		emit_signal("stage_failed", "You fell in a hole!")
+
+
+func _on_BonusStar_bonus():
+	bonus = true

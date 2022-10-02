@@ -207,7 +207,7 @@ func _on_Player_set_camera_limit(margin, position):
 		$Camera2D.limit_bottom = position
 
 
-func _on_Stage_stage_success():
+func _on_Stage_stage_success(bonus):
 	success = true
 
 

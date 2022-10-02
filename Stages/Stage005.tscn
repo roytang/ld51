@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://HintTheme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/block.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Customer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Enemies/Flyer.tscn" type="PackedScene" id=7]
 [ext_resource path="res://DashArrow.tscn" type="PackedScene" id=8]
+[ext_resource path="res://BonusStar.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 62, 60, 0, 60, 0, 0, 62, 0 )
@@ -134,6 +135,9 @@ target_node_path = NodePath("../FlyerTarget2")
 [node name="FlyerTarget2" type="Node2D" parent="."]
 position = Vector2( 930, 253 )
 
+[node name="BonusStar" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1965, 405 )
+
 [node name="Flyer4" parent="." instance=ExtResource( 7 )]
 position = Vector2( 2575, 449 )
 target_node_path = NodePath("../FlyerTarget2")
@@ -158,3 +162,4 @@ position = Vector2( 2952, 438 )
 [connection signal="body_entered" from="StageBounds" to="StageBounds" method="_on_StageBounds_body_entered"]
 [connection signal="delivered" from="Customer" to="." method="_on_Customer_delivered"]
 [connection signal="delivered" from="Customer" to="Player" method="_on_Customer_delivered"]
+[connection signal="bonus" from="BonusStar" to="." method="_on_BonusStar_bonus"]
