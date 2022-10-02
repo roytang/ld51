@@ -6,7 +6,7 @@
 [ext_resource path="res://StageBounds.gd" type="Script" id=4]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Customer.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Flyer.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Enemies/Flyer.tscn" type="PackedScene" id=7]
 [ext_resource path="res://DashArrow.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -38,7 +38,7 @@ points = PoolVector2Array( 62, 60, 0, 60, 0, 0, 62, 0 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 1921.5, 306 )
 
-[node name="Stage004" type="Node2D"]
+[node name="Stage005" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="Timer" type="Timer" parent="."]
@@ -133,6 +133,13 @@ target_node_path = NodePath("../FlyerTarget2")
 
 [node name="FlyerTarget2" type="Node2D" parent="."]
 position = Vector2( 930, 253 )
+
+[node name="Flyer4" parent="." instance=ExtResource( 7 )]
+position = Vector2( 2575, 449 )
+target_node_path = NodePath("../FlyerTarget2")
+
+[node name="FlyerTarget4" type="Node2D" parent="."]
+position = Vector2( 2575, 649 )
 
 [node name="DashArrow" parent="." instance=ExtResource( 8 )]
 position = Vector2( 487, 479 )

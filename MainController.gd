@@ -7,6 +7,7 @@ var stages = [
 	"res://Stages/Stage003.tscn",
 	"res://Stages/Stage004.tscn",
 	"res://Stages/Stage005.tscn",
+	"res://Stages/Stage006.tscn",
 	"res://Stages/Ending.tscn",
 	]
 

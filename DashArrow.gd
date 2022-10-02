@@ -14,5 +14,6 @@ func _ready():
 
 func _on_DashArrow_body_entered(body):
 	if body.is_in_group("player"):
+		print("GOT DASH ARROW!")
 		body.emit_signal("start_dash", direction)
 		# queue_free()

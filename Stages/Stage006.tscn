@@ -1,0 +1,128 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://HintTheme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/block.png" type="Texture" id=2]
+[ext_resource path="res://Stage.gd" type="Script" id=3]
+[ext_resource path="res://StageBounds.gd" type="Script" id=4]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Customer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemies/Walker.tscn" type="PackedScene" id=7]
+[ext_resource path="res://DashArrow.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Enemies/Flyer.tscn" type="PackedScene" id=9]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 62, 60, 0, 60, 0, 0, 62, 0 )
+
+[sub_resource type="TileSet" id=2]
+0/name = "block.png 0"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 64, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 1 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 509, 1823 )
+
+[node name="Stage006" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 279.0
+margin_top = 118.0
+margin_right = 736.0
+margin_bottom = 240.0
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 456.0
+margin_bottom = 121.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Label" type="Label" parent="ColorRect/ColorRect"]
+margin_left = 28.0
+margin_top = 6.0
+margin_right = 427.0
+margin_bottom = 118.0
+theme = ExtResource( 1 )
+text = "Delivery no. 6
+
+Nowhere to go but down!"
+align = 1
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 2 )
+format = 1
+tile_data = PoolIntArray( -65537, 0, 0, -131057, 0, 0, -1, 0, 0, -65521, 0, 0, 65535, 0, 0, 15, 0, 0, 131071, 0, 0, 65551, 0, 0, 196607, 0, 0, 131087, 0, 0, 262143, 0, 0, 196623, 0, 0, 327679, 0, 0, 262159, 0, 0, 393215, 0, 0, 327695, 0, 0, 458751, 0, 0, 393223, 0, 0, 393224, 0, 0, 393231, 0, 0, 524287, 0, 0, 458759, 0, 0, 458760, 0, 0, 458767, 0, 0, 589823, 0, 0, 524303, 0, 0, 655359, 0, 0, 589839, 0, 0, 720895, 0, 0, 655375, 0, 0, 786431, 0, 0, 720911, 0, 0, 851967, 0, 0, 786447, 0, 0, 917503, 0, 0, 851983, 0, 0, 983039, 0, 0, 917519, 0, 0, 1048575, 0, 0, 983055, 0, 0, 1114111, 0, 0, 1048591, 0, 0, 1179647, 0, 0, 1114127, 0, 0, 1245183, 0, 0, 1179663, 0, 0, 1310719, 0, 0, 1245199, 0, 0, 1376255, 0, 0, 1310735, 0, 0, 1441791, 0, 0, 1376271, 0, 0, 1507327, 0, 0, 1441807, 0, 0, 1572863, 0, 0, 1507334, 0, 0, 1507335, 0, 0, 1507336, 0, 0, 1507337, 0, 0, 1507338, 0, 0, 1507339, 0, 0, 1507340, 0, 0, 1507341, 0, 0, 1507342, 0, 0, 1507343, 0, 0, 1638399, 0, 0, 1572870, 0, 0, 1572871, 0, 0, 1572872, 0, 0, 1572873, 0, 0, 1572874, 0, 0, 1572875, 0, 0, 1572876, 0, 0, 1572877, 0, 0, 1572878, 0, 0, 1572879, 0, 0, 1703935, 0, 0, 1638415, 0, 0, 1769471, 0, 0, 1703951, 0, 0, 1835007, 0, 0, 1769472, 0, 0, 1769473, 0, 0, 1769487, 0, 0, 1900543, 0, 0, 1835008, 0, 0, 1835009, 0, 0, 1835023, 0, 0, 1966079, 0, 0, 1900559, 0, 0, 2031615, 0, 0, 1966080, 0, 0, 1966081, 0, 0, 1966082, 0, 0, 1966083, 0, 0, 1966084, 0, 0, 1966085, 0, 0, 1966095, 0, 0, 2097151, 0, 0, 2031616, 0, 0, 2031617, 0, 0, 2031618, 0, 0, 2031619, 0, 0, 2031620, 0, 0, 2031621, 0, 0, 2031631, 0, 0, 2162687, 0, 0, 2097167, 0, 0, 2228223, 0, 0, 2162688, 0, 0, 2162689, 0, 0, 2162690, 0, 0, 2162691, 0, 0, 2162692, 0, 0, 2162693, 0, 0, 2162694, 0, 0, 2162695, 0, 0, 2162696, 0, 0, 2162703, 0, 0, 2293759, 0, 0, 2228224, 0, 0, 2228225, 0, 0, 2228226, 0, 0, 2228227, 0, 0, 2228228, 0, 0, 2228229, 0, 0, 2228230, 0, 0, 2228231, 0, 0, 2228232, 0, 0, 2228239, 0, 0, 2359295, 0, 0, 2293775, 0, 0, 2424831, 0, 0, 2359311, 0, 0, 2490367, 0, 0, 2424847, 0, 0, 2555903, 0, 0, 2490383, 0, 0, 2621439, 0, 0, 2555919, 0, 0, 2686975, 0, 0, 2621455, 0, 0, 2752511, 0, 0, 2686991, 0, 0, 2818047, 0, 0, 2752527, 0, 0, 2883583, 0, 0, 2818063, 0, 0, 2949119, 0, 0, 2883599, 0, 0, 3014655, 0, 0, 2949135, 0, 0, 3080191, 0, 0, 3014671, 0, 0, 3145727, 0, 0, 3080207, 0, 0, 3211263, 0, 0, 3145743, 0, 0, 3276799, 0, 0, 3211279, 0, 0, 3342335, 0, 0, 3276815, 0, 0, 3407871, 0, 0, 3342351, 0, 0, 3473407, 0, 0, 3407887, 0, 0, 3538943, 0, 0, 3473408, 0, 0, 3473409, 0, 0, 3473410, 0, 0, 3473411, 0, 0, 3473412, 0, 0, 3473423, 0, 0, 3604479, 0, 0, 3538944, 0, 0, 3538945, 0, 0, 3538946, 0, 0, 3538947, 0, 0, 3538948, 0, 0, 3538959, 0, 0, 3670015, 0, 0, 3604480, 0, 0, 3604481, 0, 0, 3604482, 0, 0, 3604483, 0, 0, 3604484, 0, 0, 3604495, 0, 0, 3735551, 0, 0, 3670016, 0, 0, 3670017, 0, 0, 3670018, 0, 0, 3670019, 0, 0, 3670020, 0, 0, 3670031, 0, 0 )
+
+[node name="StageBounds" type="Area2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StageBounds"]
+position = Vector2( 499, 1813 )
+shape = SubResource( 4 )
+
+[node name="Customer" parent="." instance=ExtResource( 6 )]
+position = Vector2( 131, 3359 )
+scale = Vector2( -1, 1 )
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 513, 340 )
+
+[node name="Walker" parent="." instance=ExtResource( 7 )]
+position = Vector2( 838, 507 )
+
+[node name="Walker2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 61, 726 )
+
+[node name="Walker4" parent="." instance=ExtResource( 7 )]
+position = Vector2( 191, 172 )
+
+[node name="Walker3" parent="." instance=ExtResource( 7 )]
+position = Vector2( 192, 1057 )
+
+[node name="Flyer" parent="." instance=ExtResource( 9 )]
+position = Vector2( 846, 2571 )
+
+[node name="Flyer2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 114, 2806 )
+
+[node name="Flyer3" parent="." instance=ExtResource( 9 )]
+position = Vector2( 476, 3106 )
+initial_facing = 1
+
+[node name="DashArrow" parent="." instance=ExtResource( 8 )]
+position = Vector2( 867, 3445 )
+rotation = 3.14159
+direction = Vector2( -1, 0 )
+
+[node name="DashArrow2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 672, 3350 )
+rotation = 3.14159
+direction = Vector2( -1, 0 )
+
+[connection signal="stage_success" from="." to="Player" method="_on_Stage_stage_success"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="body_entered" from="StageBounds" to="StageBounds" method="_on_StageBounds_body_entered"]
+[connection signal="delivered" from="Customer" to="." method="_on_Customer_delivered"]
+[connection signal="delivered" from="Customer" to="Player" method="_on_Customer_delivered"]

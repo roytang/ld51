@@ -6,6 +6,6 @@ falling to death [ok]
 death/reload loop [ok]
 stage transition / selection map? [ok]
 walking enemies [ok]
-flying enemies
+flying enemies [ok]
 wall jump [ok]
-carry bonus time across stages
+carry bonus time across stages [ok]
