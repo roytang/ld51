@@ -104,7 +104,7 @@ theme = ExtResource( 1 )
 text = "Deliver the pizza within 10 seconds 
 or YOU'RE FIRED!
 
-[A] [S] or arrow keys: Move
+[A] [D] or arrow keys: Move
 [W] or [Space]: Jump
 [Q]: Abandon run
 [N]: Start delivering!
@@ -125,7 +125,7 @@ position = Vector2( 154, 439 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 787, 143 )
 frames = SubResource( 5 )
-frame = 3
+frame = 2
 playing = true
 
 [connection signal="stage_success" from="." to="Player" method="_on_Stage_stage_success"]
