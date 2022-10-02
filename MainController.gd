@@ -60,8 +60,10 @@ func load_stage():
 	
 	if current_stage_ref.name == "Ending":
 		# show stats
-		$HUD/SuccessMessageBox/ColorRect/Label.text = "You finished all your deliveries! WELL DONE!"
+		$HUD/SuccessMessageBox/ColorRect/Label.text = "You finished all your deliveries! WELL DONE!\nTake a well-deserved rest. Thanks for playing!"
 		$HUD/SuccessMessageBox/ColorRect/Label2.text = $HUD/SuccessMessageBox/ColorRect/Label2.text + "\nReloads: " + str(reload_count)
+		if reload_count == 0:
+			$HUD/SuccessMessageBox/ColorRect/Label2.text = $HUD/SuccessMessageBox/ColorRect/Label2.text + " GOOD JOB!"
 		$HUD/SuccessMessageBox/ColorRect/Label3.text = "[N]: Start a new game"
 		$HUD/SuccessMessageBox.visible = true
 	else:
@@ -83,9 +85,18 @@ func _input(event):
 	if event.is_action_pressed("next") and is_instance_valid(current_stage_ref):
 		if not $HUD/SuccessMessageBox.visible and current_stage_ref.failable:
 			return
-		$HUD/SuccessMessageBox.visible = false
-		next_stage()
-		$HUD/FailureMessageBox.visible = false
+		if current_stage_ref.name == "Ending":
+			# reload from start
+			current_stage = -1
+			bonus_time = 0.0
+			reload_count = 0
+			$HUD/SuccessMessageBox.visible = false
+			$HUD/FailureMessageBox.visible = false
+			next_stage()
+		else:
+			$HUD/SuccessMessageBox.visible = false
+			next_stage()
+			$HUD/FailureMessageBox.visible = false
 	if event.is_action_pressed("reload") and is_instance_valid(current_stage_ref):
 		reload_count += 1
 		$HUD/SuccessMessageBox.visible = false
